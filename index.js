@@ -1,13 +1,15 @@
 const express = require("express");
-const mongoose = require("./database/database");
-const { conectarBD } = require("./database/database");
-const app = express(0);
-port = 3000;
-conectarBD();
-app.use("/", (req,res)=>{
-    res.send("Hello, World!")
-})
+const { conectarBD } = require("./database/database"); 
+const productRouter = require("./routes/productRoute");
 
-app.listen(port, ()=>{
-    console.log("Ouvindo a porta 3000!\nNo endereço: http://localhost:3000")
-})
+const app = express();
+const port = 3000;
+
+conectarBD(); // 
+
+app.use(express.json());
+app.use("/produtos", productRouter);
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
