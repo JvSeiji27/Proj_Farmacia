@@ -49,7 +49,19 @@ const produtoSchema = new mongoose.Schema({
     ativo: {
         type: Boolean,
         default: true
-    }
+    },//para controle de estoque, saidas, entradas e validade
+    alertaMinimo: {
+        type: Number,
+        default: 5
+    },
+    historicoMovimentacao: [
+        {
+            tipo: {type: String, enum:["entrada","saida"], required: true},
+            quantidade: {type: Number, required: true},
+            data: {type: Date, default: Date.now},
+            observacao: {type: String}
+        }
+    ]
 })
 
 const productModel = mongoose.model("produto", produtoSchema);

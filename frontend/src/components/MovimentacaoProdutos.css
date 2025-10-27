@@ -1,0 +1,78 @@
+.mov-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: #1f2937;
+}
+
+.mov-container h1 {
+  color: #1e3a8a;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tabela-container h2 {
+  color: #1e40af;
+  margin-bottom: 10px;
+}
+
+.tabela-produtos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  background: #f9fafb;
+}
+
+.tabela-produtos th {
+  background: #1e3a8a;
+  color: #ffffff;
+  padding: 10px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.tabela-produtos td {
+  padding: 10px;
+  color: #111827;
+}
+
+.linha-par {
+  background-color: #ffffff;
+}
+
+.linha-impar {
+  background-color: #f1f5f9;
+}
+
+.btn-selecionar {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-selecionar:hover {
+  background-color: #1e40af;
+}
+
+.mensagem {
+  color: #047857;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.detalhes-produto {
+  margin-top: 20px;
+  background: #f1f5f9;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.detalhes-produto h3 {
+  color: #1e40af;
+  margin-bottom: 8px;
+}

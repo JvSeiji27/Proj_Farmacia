@@ -1,0 +1,47 @@
+.controle-container {
+  max-width: 800px;
+  margin: 60px auto;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  text-align: center;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+section {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  color: #1f2937;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  background: #f1f5f9;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dias-restantes {
+  font-size: 14px;
+}

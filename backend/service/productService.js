@@ -25,10 +25,27 @@ function deleteProductByIdService(id){
     return productModel.findByIdAndDelete(id);
 }
 
+function findCriticalStorageService(){
+    return productModel.find({
+        $expr: {$lte: ["$quantidadeEmEstoque","$alertaMinimo"]}
+    });
+}
+
+function findCriticalExpirationDateService(){
+    const hoje = new Date();
+    const limit = new Date();
+    limit.setDate(hoje.getDate() + 7)
+    return productModel.find({
+        validade: {$lte: limit, $gte: hoje}
+    })
+}
+
 module.exports = {
     findAllProductsService,
     findProductByIdService,
     createProductService,
     updateProductService,
-    deleteProductByIdService
+    deleteProductByIdService,
+    findCriticalStorageService,
+    findCriticalExpirationDateService
 }
