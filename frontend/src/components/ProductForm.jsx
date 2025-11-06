@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import "./Produtos.css";
 
+
+const formatarData = (data) => {
+  const d = new Date(data);
+  return new Intl.DateTimeFormat("pt-BR", {timeZone: "UTC"}).format(d)
+}
+
 function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [mensagem, setMensagem] = useState("");
@@ -20,6 +26,7 @@ function Produtos() {
   const [controlado, setControlado] = useState(false);
   const [ativo, setAtivo] = useState(true);
   const [alertaMinimo, setAlertaMinimo] = useState(5);
+
 
   const fetchProdutos = async () => {
     try {
@@ -117,7 +124,7 @@ function Produtos() {
               <p className={`produto-atributo ${p.quantidadeEmEstoque <= p.alertaMinimo ? "produto-estoque-baixo" : ""}`}>
                 <strong>Estoque:</strong> {p.quantidadeEmEstoque} {p.quantidadeEmEstoque <= p.alertaMinimo ? "(Baixo)" : ""}
               </p>
-              <p className="produto-atributo"><strong>Validade:</strong> {p.validade ? new Date(p.validade).toLocaleDateString() : "-"}</p>
+              <p className="produto-atributo"><strong>Validade:</strong> {p.validade ? formatarData(p.validade) : "-"}</p>
               <p className="produto-atributo"><strong>Código de Barras:</strong> {p.codigoBarras || "-"}</p>
               <p className="produto-atributo"><strong>Controlado:</strong> {p.controlado ? "Sim" : "Não"}</p>
               <p className="produto-atributo"><strong>Ativo:</strong> {p.ativo ? "Sim" : "Não"}</p>

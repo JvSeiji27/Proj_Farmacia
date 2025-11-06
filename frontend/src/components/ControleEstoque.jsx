@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import "./ControleEstoque.css";
 
+const formatarData = (data) => {
+  const d = new Date(data);
+  return new Intl.DateTimeFormat("pt-BR", {timeZone: "UTC"}).format(d)
+}
+
 function ControleEstoque() {
   const [estoqueCritico, setEstoqueCritico] = useState([]);
   const [validadeCritica, setValidadeCritica] = useState([]);
@@ -73,7 +78,7 @@ function ControleEstoque() {
               return (
                 <li key={p._id}>
                   <strong>{p.nome}</strong> — Validade:{" "}
-                  {p.validade ? new Date(p.validade).toLocaleDateString() : "-"}{" "}
+                  {p.validade ? formatarData(p.validade) : "-"}{" "}
                   <span
                     className="dias-restantes"
                     style={{ color: corDias(dias), fontWeight: "bold", marginLeft: 6 }}

@@ -4,34 +4,47 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: flex-start; /* mantém o topo visível */
+  min-height: 100vh;
 }
 
+/* ===== CONTAINER PRINCIPAL ===== */
 .container {
+  width: 100%;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 40px auto; /* centraliza e dá espaçamento vertical */
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza conteúdo dentro */
 }
 
+/* ===== TÍTULOS ===== */
 h1, h2 {
   text-align: center;
   color: #333;
 }
 
+/* ===== FORMULÁRIOS E LISTAS ===== */
 .form-container, .list-container {
   background: #f7f9fc; /* azul muito claro */
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 800px; /* limita largura dos blocos */
 }
 
+/* ===== FORMULÁRIO ===== */
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ===== FORMULÁRIO ===== */
 form {
   width: 100%;
   max-width: 500px;
@@ -54,7 +67,7 @@ form {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
-  background-color: #ffffff; /* branco para contraste com texto escuro */
+  background-color: #ffffff;
   color: #333;
   transition: border 0.3s, box-shadow 0.3s;
 }
@@ -70,6 +83,7 @@ form {
   align-items: center;
 }
 
+/* ===== BOTÕES ===== */
 button {
   width: 100%;
   padding: 12px;
@@ -88,6 +102,7 @@ button:hover {
   background-color: #115293;
 }
 
+/* ===== MENSAGEM DE FEEDBACK ===== */
 .mensagem {
   margin-top: 12px;
   font-weight: bold;
@@ -95,6 +110,7 @@ button:hover {
   text-align: center;
 }
 
+/* ===== BOTÃO DE MOSTRAR/OCULTAR LISTA ===== */
 .list-toggle {
   text-align: center;
   margin-bottom: 15px;
@@ -118,16 +134,19 @@ button:hover {
 
 /* ===== LISTA DE PRODUTOS ===== */
 .list-container {
-  background: #f7f9fc; /* azul muito claro */
+  background: #f7f9fc;
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  max-height: 500px; /* limite de altura */
-  overflow-y: auto;  /* rolagem vertical se necessário */
+  max-height: 500px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
 }
 
-/* Barra de rolagem mais discreta */
+/* ===== BARRA DE ROLAGEM ===== */
 .list-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -139,19 +158,6 @@ button:hover {
 
 .list-container::-webkit-scrollbar-thumb:hover {
   background-color: #a6bed8;
-}
-
-/* ===== GRID DE PRODUTOS ===== */
-.list-container h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.list-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
 }
 
 /* ===== CARTÕES DE PRODUTO ===== */
@@ -184,11 +190,11 @@ button:hover {
 }
 
 .produto-estoque-baixo {
-  color: #d32f2f; /* vermelho */
+  color: #d32f2f;
   font-weight: bold;
 }
 
-/* ===== ITENS EM LISTA (antigos, se ainda usados) ===== */
+/* ===== ITENS EM LISTA ANTIGOS ===== */
 ul {
   list-style-type: none;
   padding: 0;
