@@ -9,8 +9,6 @@ const { entradaProdutoController } = require('../controllers/productController')
 const { saidaProdutoController } = require('../controllers/productController');
 const { controlCriticalExpirationDateController } = require('../controllers/productController');
 const { controlCriticalStorageController } = require('../controllers/productController');
-const { authMiddlewareToken } = require('../middleware/authmiddleware');
-const {authorizeRoles} = require("../middleware/role_middleware")
 //GET
 router.get("/findAll", findAllProductsController);
 router.get("/findById/:id",  findProductByIdController);
