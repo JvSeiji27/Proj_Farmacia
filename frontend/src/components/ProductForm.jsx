@@ -30,7 +30,7 @@ function Produtos() {
 
   const fetchProdutos = async () => {
     try {
-      const response = await api.get("/findAll");
+      const response = await api.get("/produtos/findAll");
       setProdutos(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -45,7 +45,7 @@ function Produtos() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("/create", {
+      const response = await api.post("/produtos/create", {
         nome,
         preco: Number(preco),
         descricao,

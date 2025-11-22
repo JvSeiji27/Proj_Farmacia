@@ -16,8 +16,8 @@ function ControleEstoque() {
     const fetchCriticos = async () => {
       try {
         const [respEstoque, respValidade] = await Promise.all([
-          api.get("/criticalStorage").catch(() => ({ data: [] })),
-          api.get("/expirationDate").catch(() => ({ data: [] })),
+          api.get("/produtos/criticalStorage").catch(() => ({ data: [] })),
+          api.get("/produtos/expirationDate").catch(() => ({ data: [] })),
         ]);
 
         setEstoqueCritico(respEstoque.data || []);

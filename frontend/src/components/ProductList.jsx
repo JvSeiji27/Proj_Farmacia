@@ -8,7 +8,7 @@ function ListaProdutos() {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
-        const response = await api.get("/findAll");
+        const response = await api.get("/produtos/findAll");
         setProdutos(response.data);
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);

@@ -16,7 +16,7 @@ function MovimentacaoProdutos() {
     const carregarProdutos = async () => {
       try {
         setCarregando(true);
-        const res = await api.get("/findAll");
+        const res = await api.get("/produtos/findAll");
         if (Array.isArray(res.data)) {
           setProdutos(res.data);
         } else {
@@ -41,7 +41,7 @@ function MovimentacaoProdutos() {
       if (produto.historicoMovimentacao && produto.historicoMovimentacao.length > 0) {
         setHistorico(produto.historicoMovimentacao);
       } else {
-        const res = await api.get(`/findById/${produto._id}`);
+        const res = await api.get(`/produtos/findById/${produto._id}`);
         setHistorico(res.data.historicoMovimentacao || []);
       }
     } catch (err) {
@@ -56,7 +56,7 @@ function MovimentacaoProdutos() {
     if (!quantidade || quantidade <= 0) return alert("Informe uma quantidade válida.");
 
     try {
-      const res = await api.post(`/${tipo}/${selecionado._id}`, {
+      const res = await api.post(`/produtos/${tipo}/${selecionado._id}`, {
         quantidade: Number(quantidade),
         observacao: observacao.trim()
       });

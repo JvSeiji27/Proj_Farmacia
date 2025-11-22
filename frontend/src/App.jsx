@@ -7,12 +7,18 @@ import {
   Navigate,
 } from "react-router-dom";
 
+// Componentes Antigos
 import CadastroProduto from "./components/ProductForm";
 import ListaProdutos from "./components/ProductList";
 import ControleEstoque from "./components/ControleEstoque";
 import Movimentacoes from "./components/MovimentacaoProdutos";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthPage from "./components/AuthPage";
+
+// --- NOVOS COMPONENTES ---
+import RegistroVendas from "./components/RegistroVendas";
+import Relatorios from "./components/RelatoriosSimples";
+import Agendamentos from "./components/agendamentos";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -86,25 +92,26 @@ function App() {
               <h1 style={{ margin: 0, fontSize: 18 }}>Gestão de Produtos</h1>
 
               <div style={{ display: "flex", gap: 12 }}>
-                {/* ADMIN vê tudo */}
+                
+                {/* --- MENU ADMIN --- */}
                 {userRole === "ADMIN" && (
                   <>
-                    <Link to="/cadastro" style={linkStyle}>
-                      Cadastro
-                    </Link>
-                    <Link to="/controle" style={linkStyle}>
-                      Controle
-                    </Link>
-                    <Link to="/movimentacoes" style={linkStyle}>
-                      Movimentações
-                    </Link>
+                    <Link to="/relatorios" style={linkStyle}>Relatórios</Link>
+                    <Link to="/vendas" style={linkStyle}>Vender</Link>
+                    <Link to="/cadastro" style={linkStyle}>Cadastro</Link>
+                    <Link to="/controle" style={linkStyle}>Controle</Link>
+                    <Link to="/movimentacoes" style={linkStyle}>Movimentações</Link>
+                    <Link to="/agendamentos" style={linkStyle}>Agendamentos</Link>
                   </>
                 )}
 
-                {/* CLIENTE vê apenas lista */}
-                <Link to="/lista" style={linkStyle}>
-                  Lista
-                </Link>
+                {/* --- MENU CLIENTE --- */}
+                {userRole !== "ADMIN" && (
+                   <>
+                    <Link to="/lista" style={linkStyle}>Lista</Link>
+                    <Link to="/agendamentos" style={linkStyle}>Meus Agendamentos</Link>
+                   </>
+                )}
 
                 <button onClick={handleLogout} style={logoutButtonStyle}>
                   Logout
@@ -133,14 +140,7 @@ function App() {
                 element={<AuthPage setIsAuthenticated={setIsAuthenticated} />}
               />
 
-              <Route
-                path="/cadastro"
-                element={
-                  <PrivateRoute>
-                    <CadastroProduto />
-                  </PrivateRoute>
-                }
-              />
+              {/* Rotas Comuns (Protegidas) */}
               <Route
                 path="/lista"
                 element={
@@ -150,21 +150,27 @@ function App() {
                 }
               />
               <Route
-                path="/controle"
+                path="/agendamentos"
                 element={
                   <PrivateRoute>
-                    <ControleEstoque />
+                    <Agendamentos />
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/movimentacoes"
-                element={
-                  <PrivateRoute>
-                    <Movimentacoes />
-                  </PrivateRoute>
-                }
-              />
+
+              {/* Rotas de Admin (Idealmente criar PrivateAdminRoute, mas usando PrivateRoute por enquanto) */}
+              {userRole === "ADMIN" && (
+                <>
+                  <Route path="/cadastro" element={<PrivateRoute><CadastroProduto /></PrivateRoute>} />
+                  <Route path="/controle" element={<PrivateRoute><ControleEstoque /></PrivateRoute>} />
+                  <Route path="/movimentacoes" element={<PrivateRoute><Movimentacoes /></PrivateRoute>} />
+                  
+                  {/* NOVAS ROTAS */}
+                  <Route path="/vendas" element={<PrivateRoute><RegistroVendas /></PrivateRoute>} />
+                  <Route path="/relatorios" element={<PrivateRoute><Relatorios /></PrivateRoute>} />
+                </>
+              )}
+
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>
