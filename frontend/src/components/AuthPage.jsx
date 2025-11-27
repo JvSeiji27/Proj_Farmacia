@@ -9,7 +9,7 @@ function AuthPage({ setIsAuthenticated }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const navigate = useNavigate(); // ✅ Hook para redirecionar
+  const navigate = useNavigate();
 
   const toggleMode = () => {
     setIsLogin(!isLogin);
@@ -27,14 +27,12 @@ function AuthPage({ setIsAuthenticated }) {
         const { user, token, message } = res.data;
 
         if (user && token) {
-          // ✅ Salva no localStorage
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
 
           setIsAuthenticated(true);
           setMessage(message || "Login realizado com sucesso!");
 
-          // ✅ Redireciona conforme a role
           if (user.role === "ADMIN") {
             navigate("/cadastro");
           } else {
@@ -81,8 +79,10 @@ function AuthPage({ setIsAuthenticated }) {
         <form onSubmit={handleSubmit} className="space-y-5">
           {!isLogin && (
             <div>
-              <label className="text-gray-300 block mb-2">Nome</label>
-              <input
+              {/* MUDANÇA AQUI: de text-gray-300 para text-blue-600 */}
+    
+            <label style={{ color: '#2563eb' }} className="font-semibold block mb-2">Nome </label>
+                <input
                 type="text"
                 className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Digite seu nome completo"
@@ -94,7 +94,8 @@ function AuthPage({ setIsAuthenticated }) {
           )}
 
           <div>
-            <label className="text-gray-300 block mb-2">Email</label>
+             {/* MUDANÇA AQUI: de text-gray-300 para text-blue-600 */}
+            <label style={{ color: '#2563eb' }} className="font-semibold block mb-2">Email </label>
             <input
               type="email"
               className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -106,7 +107,8 @@ function AuthPage({ setIsAuthenticated }) {
           </div>
 
           <div>
-            <label className="text-gray-300 block mb-2">Senha</label>
+             {/* MUDANÇA AQUI: de text-gray-300 para text-blue-600 */}
+            <label style={{ color: '#2563eb' }} className="font-semibold block mb-2">Senha </label>
             <input
               type="password"
               className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -125,7 +127,8 @@ function AuthPage({ setIsAuthenticated }) {
           </button>
         </form>
 
-        <p className="text-gray-400 text-center mt-6">
+        {/* MUDANÇA AQUI: de text-gray-400 para text-blue-600 */}
+        <p style={{ color: '#2563eb' }} className="text-center mt-6">
           {isLogin ? "Não tem conta?" : "Já tem conta?"}{" "}
           <button
             onClick={toggleMode}
